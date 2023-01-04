@@ -8,7 +8,13 @@ export interface DataList {
   gender: string;
   mobile: string;
   email: string;
-  fData?: string;
+  address: Address;
+}
+
+export interface Address {
+  city: string;
+  state: string;
+  country: string;
 }
 @Component({
   selector: 'app-root',
@@ -28,6 +34,11 @@ export class AppComponent {
       gender: 'Male',
       mobile: '1234567890',
       email: 'demo1@gmail.com',
+      address: {
+        city: 'Surat',
+        state: 'Gujarat',
+        country: 'India',
+      },
     },
     {
       id: 2,
@@ -36,6 +47,11 @@ export class AppComponent {
       gender: 'Male',
       mobile: '1234567890',
       email: 'demo2@gmail.com',
+      address: {
+        city: 'Vadodara',
+        state: 'Gujarat',
+        country: 'India',
+      },
     },
   ];
 
