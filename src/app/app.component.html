@@ -60,7 +60,7 @@
       <p *ngIf="email.errors?.['pattern']" class="text-danger">This is not a valid Email!!!</p>
     </div>
   </div>
-  <div class="row" ngModelGroup="address" #addressVar="ngModelGroup">  
+  <div class="row" ngModelGroup="address">  
   <div class="form-group col-md-4">
     <label for="inputState">City</label>
     <select id="inputState" class="form-control" name="city" ngModel #cityVar="ngModel" required>

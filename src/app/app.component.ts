@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-export interface DataList {
+export interface UsersList {
   id: number;
   firstname: string;
   lastname: string;
@@ -26,7 +26,7 @@ export class AppComponent {
   private userId!: number;
   @ViewChild('myForm') myForm!: NgForm;
 
-  userData: DataList[] = [
+  userData: UsersList[] = [
     {
       id: 1,
       firstname: 'User 1',
@@ -66,7 +66,7 @@ export class AppComponent {
     } else {
       if (this.userId) {
         const index = this.userData.findIndex(
-          (res: any) => res.id === this.userId
+          (res: UsersList) => res.id === this.userId
         );
         this.userData[index] = {
           id: this.userId,
@@ -84,11 +84,11 @@ export class AppComponent {
     }
   }
 
-  delete(data: number): any {
+  delete(data: number) {
     this.userData.splice(data, 1);
   }
 
-  edit(data: DataList) {
+  edit(data: UsersList) {
     this.userId = data.id;
     this.myForm.form.patchValue(data);
     this.isUpdate = true;
