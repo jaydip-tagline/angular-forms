@@ -1,10 +1,8 @@
-<!-- <div class="row">
-  <div class="col-6"> -->
 <div class="row justify-content-center rounded">
-  <div class="col-6 bg-white shadow py-4 px-5">
+  <div class="col-6 bg-white border py-4 px-5">
     <h3 class="justify-content-center text-center">Template Driven Form</h3>
-<form  (ngSubmit)="onSubmit()" #myForm="ngForm">
-  <div class="form-group">
+<form  (ngSubmit)="myForm.form.valid && onSubmit()" #myForm="ngForm">
+<div class="form-group">
     <label for="exampleInputEmail1">First Name</label>
     <input type="text" class="form-control" id="firstname" placeholder="First Name" name="firstname" ngModel required #firstNameVar="ngModel"
     [ngClass]="{'is-invalid': firstNameVar.errors?.['required'] && firstNameVar.touched && !firstNameVar.dirty}">
@@ -21,6 +19,39 @@
     </span>
   </div>
   <div class="form-group">
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" ngModel checked #gender="ngModel" required>
+            <label class="form-check-label" for="gridRadios1">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" ngModel>
+            <label class="form-check-label" for="gridRadios2">
+              Female
+            </label>
+            <span *ngIf="gender.errors?.['required'] && gender.touched && !gender.dirty" class="text-danger">
+              Please enter gender!!
+            </span>
+          </div>
+        </div>
+      </div>
+      </fieldset>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Mobile No.</label>
+    <input type="text" class="form-control" id="lastname" placeholder="Mobile Number" name="mobile" ngModel required #mobileVar="ngModel"
+    [ngClass]="{'is-invalid': mobileVar.errors?.['required'] && mobileVar.touched && !mobileVar.dirty}" pattern="^((\\+91-?)|0)?[0-9]{10}$">
+    <div *ngIf="mobileVar.touched">
+      <p *ngIf="mobileVar.errors?.['required']" class="text-danger">Mobile Number is a required field!</p>
+      <p *ngIf="mobileVar.errors?.['pattern']" class="text-danger">This is not a valid Number!!!</p>
+    </div>
+  </div>
+  <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email" name="email" ngModel required #email="ngModel"
     [ngClass]="{'is-invalid': email.errors?.['required'] && email.touched && !email.dirty}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
@@ -30,44 +61,37 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-2"><button type="submit" class="btn btn-primary my-2" [disabled]="!myForm.valid">Submit</button></div>
-    <div class="col-2"><button type="reset" class="btn btn-primary my-2">Reset</button></div>
+    <div class="col-2"><button type="submit" class="btn btn-primary my-2" [disabled]="!myForm.valid">{{ isUpdate ? 'Update' : 'Submit'}}</button></div>
   </div>
 </form>
 
 </div>
 <div class="col-6"><table class="table">
-  <thead class="thead-dark">
+  <thead class="table table-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">ID</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Mobile No.</th>
+      <th scope="col">email</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>  
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr *ngFor="let data of userData;let i=index">
+      <td>{{i + 1}}</td>
+      <td>{{data.firstname}}</td>
+      <td>{{data.lastname}}</td>
+      <td>{{data.gender}}</td>
+      <td>{{data.mobile}}</td>
+      <td>{{data.email}}</td>
+      <td><button type="button" class="btn btn-success" (click)="edit(data)">Edit</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="delete(i)">Delete</button></td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
-<!-- <div>
-</div> -->
 <router-outlet></router-outlet>
