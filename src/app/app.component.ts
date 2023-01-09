@@ -14,17 +14,34 @@ import {
 export class AppComponent {
   title = 'angular-forms';
   public userdetailsForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+    // this.userdetailsForm = FormBuilder.group({
+    //   first
+    // })
+  }
   ngOnInit() {
-    this.userdetailsForm = new FormGroup({
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required),
-      gender: new FormControl(null, Validators.required),
-      mobile: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      state: new FormControl(null, Validators.required),
-      country: new FormControl(null, Validators.required),
+    // this.userdetailsForm = new FormGroup({
+    //   firstname: new FormControl(null, Validators.required),
+    //   lastname: new FormControl(null, Validators.required),
+    //   gender: new FormControl(null, Validators.required),
+    //   mobile: new FormControl(null, Validators.minLength(10)),
+    //   email: new FormControl('', [
+    //     Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+    //   ]),
+    //   city: new FormControl(null, Validators.required),
+    //   state: new FormControl(null, Validators.required),
+    //   country: new FormControl(null, Validators.required),
+    // });
+
+    this.userdetailsForm = this.formBuilder.group({
+      firstname: [null, Validators.required],
+      lastname: [null, Validators.required],
+      gender: [null, Validators.required],
+      mobile: [null, Validators.required],
+      email: [null, Validators.required],
+      city: [null, Validators.required],
+      state: [null, Validators.required],
+      country: [null, Validators.required],
     });
   }
 
