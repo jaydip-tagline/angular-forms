@@ -1,145 +1,245 @@
 <div class="row justify-content-center rounded">
-    <div class="col-5 bg-white border py-4 px-5">
-      <h3 class="justify-content-center text-center">Reactive Form</h3>
-  <form  [formGroup]="userdetailsForm" (ngSubmit)="onSubmit(userdetailsForm)">
-  <div class="form-group">
-      <label for="exampleInputEmail1">First Name</label>
-      <input type="text" class="form-control" id="firstname" placeholder="First Name" formControlName="firstname">
-    </div>
-    <span *ngIf="userdetailsForm.controls['firstname'].touched && userdetailsForm.controls['firstname'].errors?.['required']" class="text-danger">
-      Please enter your first name!!
-    </span>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Last Name</label>
-      <input type="text" class="form-control" id="firstname" placeholder="Last Name" name="lastname" formControlName="lastname">
-    </div>
-    <span *ngIf="userdetailsForm.controls['lastname'].touched && userdetailsForm.controls['lastname'].errors?.['required']" class="text-danger">
-      Please enter your Last name!!
-    </span>
-    <div class="form-group">
-      <fieldset class="form-group">
-        <div class="row">
-          <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-          <div class="col-sm-10">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" ngModel formControlName="gender">
-              <label class="form-check-label" for="gridRadios1">
-                Male
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" ngModel formControlName="gender">
-              <label class="form-check-label" for="gridRadios2">
-                Female
-              </label>
+  <div class="col-5 bg-white border py-4 px-5">
+    <h3 class="justify-content-center text-center">Reactive Form</h3>
+    <form [formGroup]="userdetailsForm" (ngSubmit)="onSubmit(userdetailsForm)">
+      <div class="form-group">
+        <label for="exampleInputEmail1">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstname"
+          placeholder="First Name"
+          formControlName="firstname"
+        />
+      </div>
+      <span
+        *ngIf="userdetailsForm.controls['firstname'].touched && userdetailsForm.controls['firstname'].errors?.['required']"
+        class="text-danger"
+      >
+        Please enter your first name!!
+      </span>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstname"
+          placeholder="Last Name"
+          name="lastname"
+          formControlName="lastname"
+        />
+      </div>
+      <span
+        *ngIf="userdetailsForm.controls['lastname'].touched && userdetailsForm.controls['lastname'].errors?.['required']"
+        class="text-danger"
+      >
+        Please enter your Last name!!
+      </span>
+      <div class="form-group">
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="gridRadios1"
+                  value="Male"
+                  ngModel
+                  formControlName="gender"
+                />
+                <label class="form-check-label" for="gridRadios1"> Male </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="gridRadios2"
+                  value="Female"
+                  ngModel
+                  formControlName="gender"
+                />
+                <label class="form-check-label" for="gridRadios2">
+                  Female
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-        <span *ngIf="userdetailsForm.controls['gender'].touched && userdetailsForm.controls['gender'].errors?.['required']" class="text-danger">
-          Please enter your Gender!!
-        </span>
+          <span
+            *ngIf="userdetailsForm.controls['gender'].touched && userdetailsForm.controls['gender'].errors?.['required']"
+            class="text-danger"
+          >
+            Please enter your Gender!!
+          </span>
         </fieldset>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Mobile No.</label>
-      <input type="text" class="form-control" id="lastname" placeholder="Mobile Number" name="mobile" formControlName="mobile">
       </div>
-      <span *ngIf="userdetailsForm.controls['mobile'].touched && userdetailsForm.controls['mobile'].errors?.['required']" class="text-danger">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Mobile No.</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastname"
+          placeholder="Mobile Number"
+          name="mobile"
+          formControlName="mobile"
+        />
+      </div>
+      <span
+        *ngIf="userdetailsForm.controls['mobile'].touched && userdetailsForm.controls['mobile'].errors?.['required']"
+        class="text-danger"
+      >
         Please enter your Mobile Number!!
       </span>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email</label>
-      <input type="email" class="form-control" id="firstname" placeholder="Email" name="email" formControlName="email">
-    </div>
-    <span *ngIf="userdetailsForm.controls['email'].touched && userdetailsForm.controls['email'].errors?.['required']" class="text-danger">
-      Please enter your Email Address!!
-    </span>
-    <!-- <div *ngif="(userdetailsForm.get('email').invalid && userdetailsForm.get('email').touched) || userdetailsForm.get('email').dirty">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="firstname"
+          placeholder="Email"
+          name="email"
+          formControlName="email"
+        />
+      </div>
+      <span
+        *ngIf="userdetailsForm.controls['email'].touched && userdetailsForm.controls['email'].errors?.['required']"
+        class="text-danger"
+      >
+        Please enter your Email Address!!
+      </span>
+      <!-- <div *ngif="(userdetailsForm.get('email').invalid && userdetailsForm.get('email').touched) || userdetailsForm.get('email').dirty">
       <small class="text-danger" *ngif="userdetailsForm.get('email').errors?.required">Email address is required</small>
       <small class="text-danger" *ngif="userdetailsForm.get('email').errors?.pattern">Email address is invalid</small>
     </div> -->
-    <!-- <div class="row" ngModelGroup="address">  
-      <div class="row">  
-      <div class="form-group col-md-4">
-        <label for="inputState">City</label>
-        <select id="inputState" class="form-control" name="city" ngModel formControlName="city">
-          <option selected>Choose City</option>
-          <option value="Surat">Surat</option>
-          <option value="Vadodara">Vadodara</option>
-          <option value="Jaipur">Jaipur</option>
-        </select>
-      <span *ngIf="userdetailsForm.controls['city'].touched && userdetailsForm.controls['city'].errors?.['required']" class="text-danger">
+      <div class="row" formGroupName="address">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="inputState">Country</label>
+            <select
+              id="inputState"
+              class="form-control"
+              name="country"
+              formControlName="country"
+              (change)="selectCountey($event)"
+            >
+              <option
+                selected
+                *ngFor="let country of countries"
+                [value]="country.id"
+              >
+                {{ country.coName }}
+              </option>
+            </select>
+            <!-- <span *ngIf="userdetailsForm.controls['country'].touched && userdetailsForm.controls['country'].errors?.['required']" class="text-danger">
+              Please enter Country Nmae!!
+            </span> -->
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select
+              id="inputState"
+              class="form-control"
+              name="state"
+              formControlName="state"
+              (change)="selectState($event)"
+            >
+              <option
+                selected
+                [value]="state.id"
+                *ngFor="let state of states"
+                [value]="state.id"
+              >
+                {{ state.sName }}
+              </option>
+            </select>
+            <!-- <span *ngIf="userdetailsForm.controls['state'].touched && userdetailsForm.controls['state'].errors?.['required']" class="text-danger">
+              Please enter State Name!!
+            </span> -->
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">City</label>
+            <select
+              id="inputState"
+              class="form-control"
+              name="city"
+              formControlName="city"
+            >
+              <option selected [value]="city.id" *ngFor="let city of cities">
+                {{ city.cName }}
+              </option>
+            </select>
+            <!-- <span *ngIf="userdetailsForm.controls['city'].touched && userdetailsForm.controls['city'].errors?.['required']" class="text-danger">
         Please enter City Name!!
-      </span>
+      </span> -->
+          </div>
+        </div>
       </div>
-      <div class="form-group col-md-4">
-        <label for="inputState">State</label>
-        <select id="inputState" class="form-control" name="state" ngModel formControlName="state">
-          <option selected>Choose State</option>
-          <option value="Gujarat">Gujarat</option>
-          <option value="Maharastra">Maharastra</option>
-          <option value="Rajasthan">Rajasthan</option>
-        </select>
-        <span *ngIf="userdetailsForm.controls['state'].touched && userdetailsForm.controls['state'].errors?.['required']" class="text-danger">
-            Please enter State Name!!
-          </span>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputState">Country</label>
-        <select id="inputState" class="form-control" name="country" ngModel formControlName="country">
-          <option selected>Choose Country</option>
-          <option value="India">India</option>
-        </select>
-        <span *ngIf="userdetailsForm.controls['country'].touched && userdetailsForm.controls['country'].errors?.['required']" class="text-danger">
-            Please enter Country Nmae!!
-          </span>
-      </div> 
-    </div>
-    </div> -->
       <div class="row">
-        <div class="col-2"><button type="submit" class="btn btn-primary my-2" [disabled]="!userdetailsForm.valid">Submit</button></div> 
+        <div class="col-2">
+          <button
+            type="submit"
+            class="btn btn-primary my-2"
+            [disabled]="!userdetailsForm.valid"
+          >
+            {{ isUpdate ? "Update" : "Submit" }}
+          </button>
+        </div>
+         
       </div>
-      </form>
-      </div>
-      <div class="col-7"><table class="table">
-        <thead class="table table-dark">
-          <tr>
-           <th colspan="6">User Details</th>
-           <!-- <th colspan="3">Address</th> -->
-           <th colspan="2">Button</th>
-          </tr>
-        </thead>
-        <thead class="table table-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">FirstName</th>
-            <th scope="col">LastName</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Mobile No.</th>
-            <th scope="col">email</th>
-            <!-- <th scope="col">City</th>
-            <th scope="col">State</th>
-            <th scope="col">Country</th> -->
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>  
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of userData;let i=index">
-            <td>{{i + 1}}</td>
-            <td>{{data.firstname}}</td>
-            <td>{{data.lastname}}</td>
-            <td>{{data.gender}}</td>
-            <td>{{data.mobile}}</td>
-            <td>{{data.email}}</td>
-            <!-- <td>{{data.address.city}}</td>
-            <td>{{data.address.state}}</td>
-            <td>{{data.address.country}}</td> -->
-            <td><button type="button" class="btn btn-success py-1">Edit</button></td>
-            <td><button type="button" class="btn btn-danger py-1" (click)="delete(i)">Delete</button></td>
-          </tr>
-        </tbody>
-      </table>
-      <div *ngIf="userData.length === 0" class="justify-content-center text-center"><h1>No Data Found</h1></div>
-      </div>
-      </div>
+    </form>
+  </div>
+  <div class="col-7">
+    <table class="table">
+      <thead class="table table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Mobile No.</th>
+          <th scope="col">email</th>
+          <th scope="col" class="text-center" colspan="3">Address</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of userData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ data.firstname }}</td>
+          <td>{{ data.lastname }}</td>
+          <td>{{ data.gender }}</td>
+          <td>{{ data.mobile }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.address.city }}</td>
+          <td>{{ data.address.state }}</td>
+          <td>{{ data.address.country }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success py-1"
+              (click)="edit(data)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger py-1"
+              (click)="delete(i)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      *ngIf="userData.length === 0"
+      class="justify-content-center text-center"
+    >
+      <h1>No Data Found</h1>
+    </div>
+  </div>
+</div>
