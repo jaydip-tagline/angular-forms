@@ -2,7 +2,7 @@
   <div class="col-5 bg-white border py-4 px-5">
     <h3 class="justify-content-center text-center">Reactive Form</h3>
     <form [formGroup]="userdetailsForm" (ngSubmit)="onSubmit(userdetailsForm)">
-      <div class="form-group">
+      <div class="form-group my-2">
         <label for="exampleInputEmail1">First Name</label>
         <input
           type="text"
@@ -18,7 +18,7 @@
       >
         Please enter your first name!!
       </span>
-      <div class="form-group">
+      <div class="form-group my-2">
         <label for="exampleInputEmail1">Last Name</label>
         <input
           type="text"
@@ -35,7 +35,7 @@
       >
         Please enter your Last name!!
       </span>
-      <div class="form-group">
+      <div class="form-group my-2">
         <fieldset class="form-group">
           <div class="row">
             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
@@ -47,7 +47,6 @@
                   name="gender"
                   id="gridRadios1"
                   value="Male"
-                  ngModel
                   formControlName="gender"
                 />
                 <label class="form-check-label" for="gridRadios1"> Male </label>
@@ -59,7 +58,6 @@
                   name="gender"
                   id="gridRadios2"
                   value="Female"
-                  ngModel
                   formControlName="gender"
                 />
                 <label class="form-check-label" for="gridRadios2">
@@ -76,7 +74,7 @@
           </span>
         </fieldset>
       </div>
-      <div class="form-group">
+      <div class="form-group my-2">
         <label for="exampleInputEmail1">Mobile No.</label>
         <input
           type="text"
@@ -85,6 +83,12 @@
           placeholder="Mobile Number"
           name="mobile"
           formControlName="mobile"
+          required
+          pattern="^[0-9]+$"
+          formControlName="mobile"
+          (keydown)="preventAlphabet($event)"
+          maxlength="10"
+          minlength="10"
         />
       </div>
       <span
@@ -93,7 +97,7 @@
       >
         Please enter your Mobile Number!!
       </span>
-      <div class="form-group">
+      <div class="form-group my-2">
         <label for="exampleInputEmail1">Email</label>
         <input
           type="email"
@@ -102,6 +106,7 @@
           placeholder="Email"
           name="email"
           formControlName="email"
+          emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
         />
       </div>
       <span
@@ -110,11 +115,27 @@
       >
         Please enter your Email Address!!
       </span>
+      <div class="form-group my-2">
+        <label for="exampleInputEmail1">BirthDate</label>
+        <input
+          type="date"
+          class="form-control"
+          name="date"
+          placeholder="Select Date"
+          formControlName="date"
+        />
+        <span
+          *ngIf="userdetailsForm.controls['date'].touched && userdetailsForm.controls['date'].errors?.['required']"
+          class="text-danger"
+          >Please Enter Your BirthDate</span
+        >
+      </div>
+
       <!-- <div *ngif="(userdetailsForm.get('email').invalid && userdetailsForm.get('email').touched) || userdetailsForm.get('email').dirty">
       <small class="text-danger" *ngif="userdetailsForm.get('email').errors?.required">Email address is required</small>
       <small class="text-danger" *ngif="userdetailsForm.get('email').errors?.pattern">Email address is invalid</small>
     </div> -->
-      <div class="row" formGroupName="address">
+      <div class="row my-2" formGroupName="address">
         <div class="row">
           <div class="form-group col-md-4">
             <label for="inputState">Country</label>
@@ -123,19 +144,22 @@
               class="form-control"
               name="country"
               formControlName="country"
-              (change)="selectCountey($event)"
+              (change)="selectCountry($event, 0)"
             >
+              <option value="choose country" disabled>Choose Country</option>
               <option
                 selected
                 *ngFor="let country of countries"
                 [value]="country.id"
               >
-                {{ country.coName }}
+                {{ country.name }}
               </option>
             </select>
-            <!-- <span *ngIf="userdetailsForm.controls['country'].touched && userdetailsForm.controls['country'].errors?.['required']" class="text-danger">
-              Please enter Country Nmae!!
-            </span> -->
+            <span
+              *ngIf="country && country.touched && country.pristine"
+              class="text-danger"
+              >Please Select Country</span
+            >
           </div>
           <div class="form-group col-md-4">
             <label for="inputState">State</label>
@@ -144,20 +168,23 @@
               class="form-control"
               name="state"
               formControlName="state"
-              (change)="selectState($event)"
+              (change)="selectState($event, 0)"
             >
+              <option value="choose state" disabled>Choose State</option>
               <option
                 selected
                 [value]="state.id"
-                *ngFor="let state of states"
+                *ngFor="let state of stateData"
                 [value]="state.id"
               >
-                {{ state.sName }}
+                {{ state.name }}
               </option>
             </select>
-            <!-- <span *ngIf="userdetailsForm.controls['state'].touched && userdetailsForm.controls['state'].errors?.['required']" class="text-danger">
-              Please enter State Name!!
-            </span> -->
+            <span
+              *ngIf="country && state && state.touched && state.pristine"
+              class="text-danger"
+              >Please Select State</span
+            >
           </div>
           <div class="form-group col-md-4">
             <label for="inputState">City</label>
@@ -167,16 +194,39 @@
               name="city"
               formControlName="city"
             >
-              <option selected [value]="city.id" *ngFor="let city of cities">
-                {{ city.cName }}
+              <option value="choose city" disabled>Choose City</option>
+              <option selected [value]="city.id" *ngFor="let city of cityData">
+                {{ city.name }}
               </option>
             </select>
-            <!-- <span *ngIf="userdetailsForm.controls['city'].touched && userdetailsForm.controls['city'].errors?.['required']" class="text-danger">
-        Please enter City Name!!
-      </span> -->
+            <span
+              *ngIf="country && state && city && city.touched && city.pristine"
+              class="text-danger"
+              >Please Select City</span
+            >
           </div>
         </div>
       </div>
+      <div class="form-group my-3">
+        <input
+          type="checkbox"
+          id="checkboxAgree"
+          formControlName="checkbox"
+          style="color: black; width: 15px"
+        />
+        <label for="checkboxAgree">
+          I agree to <a routerLink="">Terms & Condition</a> and
+          <a routerLink="">Privacy Policy</a>
+        </label>
+      </div>
+      <span
+        *ngIf="
+          userdetailsForm.controls['checkbox'].dirty &&
+          userdetailsForm.controls['checkbox'].invalid
+        "
+        class="text-danger"
+        >Please Fill The Term and Condition Checkbox</span
+      >
       <div class="row">
         <div class="col-2">
           <button
@@ -201,6 +251,7 @@
           <th scope="col">Gender</th>
           <th scope="col">Mobile No.</th>
           <th scope="col">email</th>
+          <th scope="col">BirthDate</th>
           <th scope="col" class="text-center" colspan="3">Address</th>
           <th scope="col" class="text-center">Actions</th>
         </tr>
@@ -213,9 +264,14 @@
           <td>{{ data.gender }}</td>
           <td>{{ data.mobile }}</td>
           <td>{{ data.email }}</td>
-          <td>{{ data.address.city }}</td>
-          <td>{{ data.address.state }}</td>
-          <td>{{ data.address.country }}</td>
+          <td>{{ data.date }}</td>
+          <td>{{ data.address.city.name }}</td>
+          <!-- city ::
+          {{
+            data.address.city.name | json
+          }} -->
+          <td>{{ data.address.state.name }}</td>
+          <td>{{ data.address.country.name }}</td>
           <td>
             <button
               type="button"

@@ -5,6 +5,7 @@ import {
   FormGroupName,
   FormBuilder,
   Validators,
+  FormArray,
 } from '@angular/forms';
 import { CitiesList, CountriesList, StatesList, UsersList } from '../common';
 
@@ -21,7 +22,7 @@ export class RegistrationformComponent implements OnInit {
   public stateData: any;
   public cityData: any;
   public isId!: number;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
   userData: UsersList[] = [
     {
@@ -31,23 +32,47 @@ export class RegistrationformComponent implements OnInit {
       gender: 'Male',
       mobile: '1234567890',
       email: 'demo1@gmail.com',
+      date: '2001-01-01',
       address: {
-        city: 'Surat',
-        state: 'Gujarat',
-        country: 'India',
+        city: {
+          id: 1,
+          name: 'Surat',
+          sId: 101,
+        },
+        state: {
+          id: 101,
+          name: 'Gujarat',
+          cId: 1,
+        },
+        country: {
+          id: 1,
+          name: 'India',
+        },
       },
     },
     {
       id: 2,
       firstname: 'User 2',
       lastname: 'demo',
-      gender: 'Male',
+      gender: 'Female',
       mobile: '1234567890',
       email: 'demo2@gmail.com',
+      date: '2001-01-02',
       address: {
-        city: 'Vadodara',
-        state: 'Gujarat',
-        country: 'India',
+        city: {
+          id: 12,
+          name: 'Los Angeles',
+          sId: 104,
+        },
+        state: {
+          id: 104,
+          name: 'California',
+          cId: 2,
+        },
+        country: {
+          id: 2,
+          name: 'US',
+        },
       },
     },
   ];
@@ -55,79 +80,79 @@ export class RegistrationformComponent implements OnInit {
   countries: CountriesList[] = [
     {
       id: 1,
-      coName: 'India',
+      name: 'India',
     },
     {
       id: 2,
-      coName: 'US',
+      name: 'US',
     },
     {
       id: 3,
-      coName: 'Japan',
+      name: 'Japan',
     },
     {
       id: 4,
-      coName: 'China',
+      name: 'China',
     },
     {
       id: 5,
-      coName: 'UK',
+      name: 'UK',
     },
   ];
   states: StatesList[] = [
     {
-      id: 1,
-      sName: 'Gujarat',
+      id: 101,
+      name: 'Gujarat',
       cId: 1,
     },
     {
-      id: 2,
-      sName: 'Maharashtra',
+      id: 102,
+      name: 'Maharashtra',
       cId: 1,
     },
     {
-      id: 3,
-      sName: 'Rajasthan',
+      id: 103,
+      name: 'Rajasthan',
       cId: 1,
     },
     {
-      id: 4,
-      sName: 'California',
+      id: 104,
+      name: 'California',
       cId: 2,
     },
     {
-      id: 5,
-      sName: 'Alaska',
+      id: 105,
+      name: 'Alaska',
       cId: 2,
     },
     {
-      id: 6,
-      sName: 'Hokkaido',
+      id: 106,
+      name: 'Hokkaido',
       cId: 3,
     },
     {
-      id: 7,
-      sName: 'Tohoku',
+      id: 107,
+      name: 'Tohoku',
       cId: 3,
     },
     {
-      id: 8,
-      sName: 'Gansu',
+      id: 108,
+      name: 'Gansu',
       cId: 4,
     },
     {
-      id: 9,
-      sName: 'Guangdong',
+      id: 109,
+      name: 'Guangdong',
       cId: 4,
     },
     {
-      id: 10,
-      sName: 'England',
+      id: 110,
+      name: 'England',
       cId: 5,
     },
     {
-      id: 11,
-      sName: 'Northern Ireland',
+      id: 111,
+      name: 'Northern Ireland',
       cId: 5,
     },
   ];
@@ -135,178 +160,163 @@ export class RegistrationformComponent implements OnInit {
   cities: CitiesList[] = [
     {
       id: 1,
-      cName: 'Surat',
-      sId: 1,
+      name: 'Surat',
+      sId: 101,
     },
     {
       id: 2,
-      cName: 'Ahmadabad',
-      sId: 1,
+      name: 'Ahmadabad',
+      sId: 101,
     },
     {
       id: 3,
-      cName: 'Vadodara',
-      sId: 1,
+      name: 'Vadodara',
+      sId: 101,
     },
     {
       id: 4,
-      cName: 'Rajkot',
-      sId: 1,
+      name: 'Rajkot',
+      sId: 101,
     },
     {
       id: 5,
-      cName: 'Pune',
-      sId: 2,
+      name: 'Pune',
+      sId: 102,
     },
     {
       id: 6,
-      cName: 'Mumbai',
-      sId: 2,
+      name: 'Mumbai',
+      sId: 102,
     },
     {
       id: 7,
-      cName: 'Nashik',
-      sId: 2,
+      name: 'Nashik',
+      sId: 102,
     },
     {
       id: 8,
-      cName: 'Jaipur',
-      sId: 3,
+      name: 'Jaipur',
+      sId: 103,
     },
     {
       id: 9,
-      cName: 'Jodhpur',
-      sId: 3,
+      name: 'Jodhpur',
+      sId: 103,
     },
     {
       id: 10,
-      cName: 'Kota',
-      sId: 3,
+      name: 'Kota',
+      sId: 103,
     },
     {
       id: 11,
-      cName: 'Udaipur',
-      sId: 3,
+      name: 'Udaipur',
+      sId: 103,
     },
     {
       id: 12,
-      cName: 'Los Angeles',
-      sId: 4,
+      name: 'Los Angeles',
+      sId: 104,
     },
     {
       id: 13,
-      cName: 'San Diego',
-      sId: 4,
+      name: 'San Diego',
+      sId: 104,
     },
     {
       id: 14,
-      cName: 'San Jose',
-      sId: 4,
+      name: 'San Jose',
+      sId: 104,
     },
     {
       id: 15,
-      cName: 'Anchorage',
-      sId: 5,
+      name: 'Anchorage',
+      sId: 105,
     },
     {
       id: 16,
-      cName: 'Fairbanks',
-      sId: 5,
-    },
-    {
-      id: 14,
-      cName: 'Juneau',
-      sId: 5,
-    },
-    {
-      id: 15,
-      cName: 'Abashiri',
-      sId: 6,
-    },
-    {
-      id: 16,
-      cName: 'Asahikawa',
-      sId: 6,
+      name: 'Fairbanks',
+      sId: 105,
     },
     {
       id: 17,
-      cName: 'Ashibetsu',
-      sId: 6,
+      name: 'Ashibetsu',
+      sId: 106,
     },
     {
       id: 18,
-      cName: 'Sendai',
-      sId: 7,
+      name: 'Sendai',
+      sId: 107,
     },
     {
       id: 19,
-      cName: 'Iwaki',
-      sId: 7,
+      name: 'Iwaki',
+      sId: 107,
     },
     {
       id: 20,
-      cName: 'Akita',
-      sId: 7,
+      name: 'Akita',
+      sId: 107,
     },
     {
       id: 21,
-      cName: 'Jinchang',
-      sId: 8,
+      name: 'Jinchang',
+      sId: 108,
     },
     {
       id: 22,
-      cName: 'Tianshui',
-      sId: 8,
+      name: 'Tianshui',
+      sId: 108,
     },
     {
       id: 23,
-      cName: 'Jiayuguan',
-      sId: 8,
+      name: 'Jiayuguan',
+      sId: 108,
     },
     {
       id: 24,
-      cName: 'Zhuhai',
-      sId: 9,
+      name: 'Zhuhai',
+      sId: 109,
     },
     {
       id: 25,
-      cName: 'Shenzhen',
-      sId: 9,
+      name: 'Shenzhen',
+      sId: 109,
     },
     {
       id: 26,
-      cName: 'Dongguan',
-      sId: 9,
+      name: 'Dongguan',
+      sId: 109,
     },
     {
       id: 27,
-      cName: 'Birmingham',
-      sId: 10,
+      name: 'Birmingham',
+      sId: 110,
     },
     {
       id: 28,
-      cName: 'Bristol',
-      sId: 10,
+      name: 'Bristol',
+      sId: 110,
     },
     {
       id: 29,
-      cName: 'Carlisle',
-      sId: 10,
+      name: 'Carlisle',
+      sId: 110,
     },
     {
       id: 30,
-      cName: 'Belfast',
-      sId: 11,
+      name: 'Belfast',
+      sId: 111,
     },
     {
       id: 31,
-      cName: 'Londonderry',
-      sId: 11,
+      name: 'Londonderry',
+      sId: 111,
     },
     {
       id: 32,
-      cName: 'Derry',
-      sId: 11,
+      name: 'Derry',
+      sId: 111,
     },
   ];
 
@@ -324,17 +334,19 @@ export class RegistrationformComponent implements OnInit {
     //   country: new FormControl(null, Validators.required),
     // });
 
-    this.userdetailsForm = this.formBuilder.group({
+    this.userdetailsForm = this.fb.group({
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
       gender: [null, Validators.required],
       mobile: [null, Validators.required],
       email: [null, Validators.required],
-      address: this.formBuilder.group({
+      date: [null, Validators.required],
+      address: this.fb.group({
         city: [null, Validators.required],
         state: [null, Validators.required],
         country: [null, Validators.required],
       }),
+      checkbox: [null, Validators.requiredTrue],
     });
   }
 
@@ -347,21 +359,19 @@ export class RegistrationformComponent implements OnInit {
   }
 
   onSubmit(userdetailsForm: FormGroup) {
-    const address = this.userdetailsForm.value.address;
-    const countryData = this.countryData.find(
-      (country: CountriesList) => country.id == address.country
-    ).coName;
-    console.log('countryData :>> ', countryData);
-    const stateData = this.stateData.find(
-      (state: StatesList) => state.id == address.state
-    ).sName;
-    const cityData = this.cityData.find(
-      (cit: CitiesList) => cit.id == address.city
-    ).cName;
-
     if (this.userdetailsForm.invalid) {
       return;
     } else {
+      const addressValue = this.userdetailsForm.value.address;
+      const countryData = this.countries.find(
+        (country: CountriesList) => country.id == addressValue.country
+      );
+      const stateData = this.states.find(
+        (state: StatesList) => state.id == addressValue.state
+      );
+      const cityData = this.cities.find(
+        (city: CitiesList) => city.id == addressValue.city
+      );
       if (this.userId) {
         const index = this.userData.findIndex(
           (res: UsersList) => res.id === this.userId
@@ -390,49 +400,68 @@ export class RegistrationformComponent implements OnInit {
         console.log(data.address);
       }
       this.userdetailsForm.reset();
+      // }
+      // this.country.valueChanges.subscribe((country) => {
+      //   this.state.reset();
+      //   this.state.disable();
+      //   if (country) {
+      //     this.state = this.service.getStatesByCountry(country);
+      //     this.state.enable();
+      //   }
+      // });
     }
-    // this.country.valueChanges.subscribe((country) => {
-    //   this.state.reset();
-    //   this.state.disable();
-    //   if (country) {
-    //     this.state = this.service.getStatesByCountry(country);
-    //     this.state.enable();
-    //   }
-    // });
   }
 
-  selectCountey(evt: any): void {
-    console.log('evt :>> ', evt.target.value);
+  selectCountry(evt: any, i: any) {
     this.stateData = this.states.filter(
-      (data: StatesList) => data.cId == evt.target.value
+      (data: StatesList) => data.cId == evt.target?.value
     );
-    this.states = this.stateData;
-    console.log('this.countryData :>> ', this.stateData);
+    if (i) {
+      this.stateData = this.states.filter((data: StatesList) => data.cId == i);
+    }
   }
 
-  selectState(evt: any): void {
-    console.log('evt.target.value :>> ', evt.target.value);
+  selectState(evt: any, i: any) {
     this.cityData = this.cities.filter(
-      (data: CitiesList) => data.sId == evt.target.value
+      (data: CitiesList) => data.sId == evt.target?.value
     );
-    this.cities = this.cityData;
-    console.log('states :>> ', this.cityData);
+    if (i) {
+      this.cityData = this.cities.filter((data: CitiesList) => data.sId == i);
+    }
   }
-
-  // selectCity(evt: any) {
-  //   console.log('evt.target.value :>> ', evt.target.value);
-  // this.cityData = this.cities.filter(
-  //   (data: CitiesList) => data.sId == evt.target.value
-  // );
-  // console.log('cities :>> ', this.cityData);
-  // }
+  get skills(): FormArray {
+    return this.userdetailsForm.get('skills') as FormArray;
+  }
+  get country() {
+    return this.userdetailsForm.get('address.country');
+  }
+  get state() {
+    return this.userdetailsForm.get('address.state');
+  }
+  get city() {
+    return this.userdetailsForm.get('address.city');
+  }
 
   edit(data: UsersList) {
-    this.userId = data.id;
+    let address = {
+      country: data.address.country.id,
+      state: data.address.state.id,
+      city: data.address.city.id,
+    };
+    this.selectCountry(0, data.address.country.id);
+    this.selectState(0, data.address.state.id);
     this.userdetailsForm.patchValue(data);
+    this.userdetailsForm.controls['address'].patchValue(address);
+    this.userId = data.id;
     this.isUpdate = true;
   }
   delete(id: number) {
     this.userData.splice(id, 1);
+  }
+
+  preventAlphabet(evet: any) {
+    if ((evet.keyCode >= 65 && evet.keyCode <= 90) || evet.keyCode == 32) {
+      evet.preventDefault();
+    }
   }
 }

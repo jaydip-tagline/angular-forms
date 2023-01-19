@@ -7,32 +7,33 @@ export interface UsersList {
   gender: string;
   mobile: string;
   email: string;
+  date: string;
   address: Address;
 }
 export interface Address {
-  city: string;
-  state: string;
-  country: string;
+  city: CitiesList;
+  state: StatesList;
+  country: CountriesList;
 }
 
 export interface Country {
   id: number;
-  coName: string;
+  name: string;
 }
 
 export interface CountriesList {
   id: number;
-  coName: string;
+  name: string;
 }
 
 export interface StatesList {
   id: number;
-  sName: string;
+  name: string;
   cId: number;
 }
 
 export interface CitiesList {
   id: number;
-  cName: string;
+  name: string;
   sId: number;
 }
