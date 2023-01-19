@@ -106,7 +106,7 @@
           placeholder="Email"
           name="email"
           formControlName="email"
-          emailPattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
         />
       </div>
       <span
@@ -115,6 +115,12 @@
       >
         Please enter your Email Address!!
       </span>
+      <span
+        *ngIf="userdetailsForm.controls['email'].invalid && userdetailsForm.controls['email'].dirty && userdetailsForm.controls['email'].errors?.['pattern']"
+        class="text-danger"
+        >Email Address is invalid!!</span
+      >
+
       <div class="form-group my-2">
         <label for="exampleInputEmail1">BirthDate</label>
         <input
@@ -130,11 +136,6 @@
           >Please Enter Your BirthDate</span
         >
       </div>
-
-      <!-- <div *ngif="(userdetailsForm.get('email').invalid && userdetailsForm.get('email').touched) || userdetailsForm.get('email').dirty">
-      <small class="text-danger" *ngif="userdetailsForm.get('email').errors?.required">Email address is required</small>
-      <small class="text-danger" *ngif="userdetailsForm.get('email').errors?.pattern">Email address is invalid</small>
-    </div> -->
       <div class="row my-2" formGroupName="address">
         <div class="row">
           <div class="form-group col-md-4">
@@ -215,8 +216,8 @@
           style="color: black; width: 15px"
         />
         <label for="checkboxAgree">
-          I agree to <a routerLink="">Terms & Condition</a> and
-          <a routerLink="">Privacy Policy</a>
+          I agree to <a href="">Terms & Condition</a> and
+          <a href="">Privacy Policy</a>
         </label>
       </div>
       <span
@@ -225,7 +226,7 @@
           userdetailsForm.controls['checkbox'].invalid
         "
         class="text-danger"
-        >Please Fill The Term and Condition Checkbox</span
+        >Please Fill The Term & Condition Checkbox</span
       >
       <div class="row">
         <div class="col-2">
@@ -266,10 +267,6 @@
           <td>{{ data.email }}</td>
           <td>{{ data.date }}</td>
           <td>{{ data.address.city.name }}</td>
-          <!-- city ::
-          {{
-            data.address.city.name | json
-          }} -->
           <td>{{ data.address.state.name }}</td>
           <td>{{ data.address.country.name }}</td>
           <td>

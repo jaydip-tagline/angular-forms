@@ -29,11 +29,11 @@ export interface CountriesList {
 export interface StatesList {
   id: number;
   name: string;
-  cId: number;
+  countryId: number;
 }
 
 export interface CitiesList {
   id: number;
   name: string;
-  sId: number;
+  stateId: number;
 }

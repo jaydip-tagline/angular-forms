@@ -5,7 +5,6 @@ import {
   FormGroupName,
   FormBuilder,
   Validators,
-  FormArray,
 } from '@angular/forms';
 import { CitiesList, CountriesList, StatesList, UsersList } from '../common';
 
@@ -37,12 +36,12 @@ export class RegistrationformComponent implements OnInit {
         city: {
           id: 1,
           name: 'Surat',
-          sId: 101,
+          stateId: 101,
         },
         state: {
           id: 101,
           name: 'Gujarat',
-          cId: 1,
+          countryId: 1,
         },
         country: {
           id: 1,
@@ -62,12 +61,12 @@ export class RegistrationformComponent implements OnInit {
         city: {
           id: 12,
           name: 'Los Angeles',
-          sId: 104,
+          stateId: 104,
         },
         state: {
           id: 104,
           name: 'California',
-          cId: 2,
+          countryId: 2,
         },
         country: {
           id: 2,
@@ -103,57 +102,57 @@ export class RegistrationformComponent implements OnInit {
     {
       id: 101,
       name: 'Gujarat',
-      cId: 1,
+      countryId: 1,
     },
     {
       id: 102,
       name: 'Maharashtra',
-      cId: 1,
+      countryId: 1,
     },
     {
       id: 103,
       name: 'Rajasthan',
-      cId: 1,
+      countryId: 1,
     },
     {
       id: 104,
       name: 'California',
-      cId: 2,
+      countryId: 2,
     },
     {
       id: 105,
       name: 'Alaska',
-      cId: 2,
+      countryId: 2,
     },
     {
       id: 106,
       name: 'Hokkaido',
-      cId: 3,
+      countryId: 3,
     },
     {
       id: 107,
       name: 'Tohoku',
-      cId: 3,
+      countryId: 3,
     },
     {
       id: 108,
       name: 'Gansu',
-      cId: 4,
+      countryId: 4,
     },
     {
       id: 109,
       name: 'Guangdong',
-      cId: 4,
+      countryId: 4,
     },
     {
       id: 110,
       name: 'England',
-      cId: 5,
+      countryId: 5,
     },
     {
       id: 111,
       name: 'Northern Ireland',
-      cId: 5,
+      countryId: 5,
     },
   ];
 
@@ -161,162 +160,162 @@ export class RegistrationformComponent implements OnInit {
     {
       id: 1,
       name: 'Surat',
-      sId: 101,
+      stateId: 101,
     },
     {
       id: 2,
       name: 'Ahmadabad',
-      sId: 101,
+      stateId: 101,
     },
     {
       id: 3,
       name: 'Vadodara',
-      sId: 101,
+      stateId: 101,
     },
     {
       id: 4,
       name: 'Rajkot',
-      sId: 101,
+      stateId: 101,
     },
     {
       id: 5,
       name: 'Pune',
-      sId: 102,
+      stateId: 102,
     },
     {
       id: 6,
       name: 'Mumbai',
-      sId: 102,
+      stateId: 102,
     },
     {
       id: 7,
       name: 'Nashik',
-      sId: 102,
+      stateId: 102,
     },
     {
       id: 8,
       name: 'Jaipur',
-      sId: 103,
+      stateId: 103,
     },
     {
       id: 9,
       name: 'Jodhpur',
-      sId: 103,
+      stateId: 103,
     },
     {
       id: 10,
       name: 'Kota',
-      sId: 103,
+      stateId: 103,
     },
     {
       id: 11,
       name: 'Udaipur',
-      sId: 103,
+      stateId: 103,
     },
     {
       id: 12,
       name: 'Los Angeles',
-      sId: 104,
+      stateId: 104,
     },
     {
       id: 13,
       name: 'San Diego',
-      sId: 104,
+      stateId: 104,
     },
     {
       id: 14,
       name: 'San Jose',
-      sId: 104,
+      stateId: 104,
     },
     {
       id: 15,
       name: 'Anchorage',
-      sId: 105,
+      stateId: 105,
     },
     {
       id: 16,
       name: 'Fairbanks',
-      sId: 105,
+      stateId: 105,
     },
     {
       id: 17,
       name: 'Ashibetsu',
-      sId: 106,
+      stateId: 106,
     },
     {
       id: 18,
       name: 'Sendai',
-      sId: 107,
+      stateId: 107,
     },
     {
       id: 19,
       name: 'Iwaki',
-      sId: 107,
+      stateId: 107,
     },
     {
       id: 20,
       name: 'Akita',
-      sId: 107,
+      stateId: 107,
     },
     {
       id: 21,
       name: 'Jinchang',
-      sId: 108,
+      stateId: 108,
     },
     {
       id: 22,
       name: 'Tianshui',
-      sId: 108,
+      stateId: 108,
     },
     {
       id: 23,
       name: 'Jiayuguan',
-      sId: 108,
+      stateId: 108,
     },
     {
       id: 24,
       name: 'Zhuhai',
-      sId: 109,
+      stateId: 109,
     },
     {
       id: 25,
       name: 'Shenzhen',
-      sId: 109,
+      stateId: 109,
     },
     {
       id: 26,
       name: 'Dongguan',
-      sId: 109,
+      stateId: 109,
     },
     {
       id: 27,
       name: 'Birmingham',
-      sId: 110,
+      stateId: 110,
     },
     {
       id: 28,
       name: 'Bristol',
-      sId: 110,
+      stateId: 110,
     },
     {
       id: 29,
       name: 'Carlisle',
-      sId: 110,
+      stateId: 110,
     },
     {
       id: 30,
       name: 'Belfast',
-      sId: 111,
+      stateId: 111,
     },
     {
       id: 31,
       name: 'Londonderry',
-      sId: 111,
+      stateId: 111,
     },
     {
       id: 32,
       name: 'Derry',
-      sId: 111,
+      stateId: 111,
     },
   ];
 
@@ -414,23 +413,24 @@ export class RegistrationformComponent implements OnInit {
 
   selectCountry(evt: any, i: any) {
     this.stateData = this.states.filter(
-      (data: StatesList) => data.cId == evt.target?.value
+      (data: StatesList) => data.countryId == evt.target?.value
     );
     if (i) {
-      this.stateData = this.states.filter((data: StatesList) => data.cId == i);
+      this.stateData = this.states.filter(
+        (data: StatesList) => data.countryId == i
+      );
     }
   }
 
   selectState(evt: any, i: any) {
     this.cityData = this.cities.filter(
-      (data: CitiesList) => data.sId == evt.target?.value
+      (data: CitiesList) => data.stateId == evt.target?.value
     );
     if (i) {
-      this.cityData = this.cities.filter((data: CitiesList) => data.sId == i);
+      this.cityData = this.cities.filter(
+        (data: CitiesList) => data.stateId == i
+      );
     }
-  }
-  get skills(): FormArray {
-    return this.userdetailsForm.get('skills') as FormArray;
   }
   get country() {
     return this.userdetailsForm.get('address.country');
